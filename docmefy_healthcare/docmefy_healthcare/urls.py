@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('docmefy.urls'))
 ]
 
 # By default, Django doesn’t serve media files during development(when debug=True)
