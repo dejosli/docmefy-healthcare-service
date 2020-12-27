@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_gulp', # Automatically watches and compiles new JavaScript files with browserify and live reload
     'django.contrib.staticfiles',
 
     # Custom apps

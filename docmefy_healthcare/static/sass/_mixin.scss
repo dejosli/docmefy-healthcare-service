@@ -1,0 +1,24 @@
+// Toolbox Mixin
+@mixin link-color() {
+    a {
+        color: $white;
+    }
+}
+
+// Media Query Mixin
+@mixin breakpoint($point) {
+
+    // Tablets and under
+    @if $point==tablets {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+
+    // Mobile
+    @if $point==mobile {
+        @media (max-width: 500px) {
+            @content;
+        }
+    }
+}
