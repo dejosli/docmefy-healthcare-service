@@ -7,18 +7,21 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var cleanCSS = require('gulp-clean-css');
+var postcss = require("gulp-postcss");
 var autoprefixer = require('autoprefixer');
 var $ = require('gulp-load-plugins')();
+var cssnano = require("cssnano");
+var sourcemaps = require("gulp-sourcemaps");
 var browserSync = require('browser-sync').create();
 var del = require('del');
 
 var paths = {
     styles: {
-        src: 'static/sass/*.scss',
+        src: 'static/scss/*.scss',
         dest: 'static/dist/css/'
     },
     scripts: {
-        src: 'static/js/*.js',
+        src: 'static/js/**/*.js',
         dest: 'static/dist/js/'
     }
 };
@@ -38,15 +41,30 @@ function clean() {
  */
 
 // Compile sass into CSS & auto-inject into browsers
-function sass() {
-    return gulp.src(paths.styles.src)
-        .pipe($.sass()
-            .on('error', $.sass.logError))
-        .pipe($.postcss([
-            autoprefixer({ browsers: ['last 2 versions', 'ie >= 9'] })
-        ]))
-        .pipe(gulp.dest(paths.styles.dest))
-        .pipe(browserSync.stream());
+// async function sass() {
+//     return gulp.src(paths.styles.src)
+//         .pipe(sass()
+//             .on('error', sass.logError))
+//         .pipe(gulp.dest(paths.styles.dest))
+//         .pipe(browserSync.stream());
+// }
+
+
+function style() {
+    return (
+        gulp.src(paths.styles.src)
+            // Initialize sourcemaps before compilation starts
+            .pipe(sourcemaps.init())
+            .pipe(sass())
+            .on("error", sass.logError)
+            // Use postcss with autoprefixer and compress the compiled file using cssnano
+            .pipe(postcss([autoprefixer(), cssnano()]))
+            // Now add/write the sourcemaps
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest(paths.styles.dest))
+            // Add browsersync stream pipe after compilation
+            .pipe(browserSync.stream())
+    );
 }
 
 function scripts() {
@@ -64,21 +82,21 @@ function watch() {
         proxy: "127.0.0.1:8000"
     });
 
-    gulp.watch(paths.styles.src, sass);
-    gulp.watch(paths.scripts.src, scripts);
+    gulp.watch(paths.styles.src, style);
     gulp.watch("templates/**/*.html").on('change', browserSync.reload);
+    gulp.watch(paths.scripts.src, scripts).on('change', browserSync.reload);
 }
 
 /*
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
-var build = gulp.series(clean, gulp.parallel(sass, scripts, watch));
+var build = gulp.series(clean, gulp.parallel(style, scripts, watch));
 
 /*
  * You can use CommonJS `exports` module notation to declare tasks
  */
 exports.clean = clean;
-exports.sass = sass;
+exports.styles = style;
 exports.scripts = scripts;
 exports.watch = watch;
 exports.build = build;

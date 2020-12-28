@@ -4,7 +4,6 @@
   "description": "The next generation healthcare service",
   "main": "gulpfile.js",
   "dependencies": {
-    "autoprefixer": "^10.1.0",
     "browser-sync": "^2.26.13",
     "del": "^6.0.0",
     "gulp-babel": "^8.0.0",
@@ -21,11 +20,15 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "autoprefixer": "^10.1.0",
+    "cssnano": "^4.1.10",
+    "gulp-postcss": "^9.0.0",
+    "gulp-sourcemaps": "^3.0.0",
     "postcss": "^8.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
