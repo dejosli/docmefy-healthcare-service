@@ -21,7 +21,7 @@ var paths = {
         dest: 'static/dist/css/'
     },
     scripts: {
-        src: 'static/js/**/*.js',
+        src: 'static/js/*.js',
         dest: 'static/dist/js/'
     }
 };
@@ -39,16 +39,6 @@ function clean() {
 /*
  * Define our tasks using plain functions
  */
-
-// Compile sass into CSS & auto-inject into browsers
-// async function sass() {
-//     return gulp.src(paths.styles.src)
-//         .pipe(sass()
-//             .on('error', sass.logError))
-//         .pipe(gulp.dest(paths.styles.dest))
-//         .pipe(browserSync.stream());
-// }
-
 
 function style() {
     return (
@@ -82,9 +72,9 @@ function watch() {
         proxy: "127.0.0.1:8000"
     });
 
-    gulp.watch(paths.styles.src, style);
+    gulp.watch('static/scss/**/*.scss', style);
     gulp.watch("templates/**/*.html").on('change', browserSync.reload);
-    gulp.watch(paths.scripts.src, scripts).on('change', browserSync.reload);
+    gulp.watch('static/js/**/*.js', scripts).on('change', browserSync.reload);
 }
 
 /*
