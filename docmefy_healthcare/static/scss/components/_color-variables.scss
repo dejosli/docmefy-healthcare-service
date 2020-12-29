@@ -200,6 +200,10 @@ $light-green: (
   "accent-4":    #64dd17
 );
 
+$minimal-green: (
+  "base": #00a82d,
+);
+
 $lime: (
   "base":       #cddc39,
   "lighten-5":  #f9fbe7,
@@ -327,6 +331,7 @@ $grey: (
 $shades: (
   "black":        #000000,
   "white":        #FFFFFF,
+  "extra":        #cada2a,
   "transparent":  transparent
 );
 
@@ -343,6 +348,7 @@ $colors: (
   "teal": $teal,
   "green": $green,
   "light-green": $light-green,
+  "minimal-green": $minimal-green,
   "lime": $lime,
   "yellow": $yellow,
   "amber": $amber,

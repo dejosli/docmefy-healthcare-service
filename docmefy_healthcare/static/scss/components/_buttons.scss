@@ -77,6 +77,17 @@
   }
 }
 
+.btn-outline{
+  background-color: white;
+  color: #000;
+  border: 1px  $button-raised-background solid;
+  &:hover {
+    background-color: white;
+    border: 2px;
+    @extend .z-depth-1-half;
+  }
+}
+
 // Floating button
 .btn-floating {
   &:hover {

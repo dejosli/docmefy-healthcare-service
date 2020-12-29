@@ -13,14 +13,19 @@ nav {
     }
   }
 
+  font-family: 'Lato', sans-serif;
+  padding: 0 1.25em;
   color: $navbar-font-color;
   @extend .z-depth-1;
-  background-color: $primary-color;
-  width: 100%;
+  background-color: white;
+  width: 100vw;
   height: $navbar-height-mobile;
   line-height: $navbar-line-height-mobile;
 
-  a { color: $navbar-font-color; }
+  a { 
+    color: $navbar-font-color; 
+    // font-weight: 700;
+  }
 
   i,
   [class^="mdi-"], [class*="mdi-"],
