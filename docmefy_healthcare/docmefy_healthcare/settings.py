@@ -69,7 +69,7 @@ if DEBUG:
 
 # Customize 'all-auth' forms
 ACCOUNT_FORMS = {
-    'signup': 'users.forms.CustomUserCreationForm',
+    'signup': 'users.forms.PatientCreationForm',
 }
 
 

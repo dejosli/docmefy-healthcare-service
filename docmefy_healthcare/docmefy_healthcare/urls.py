@@ -24,6 +24,10 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 ]
 
+admin.site.site_title = 'Docmefy Admin'
+admin.site.site_header = 'Docmefy Administration'
+admin.site.index_title = 'DATA BASE ADMINISTRATION'
+
 # By default, Django doesn’t serve media files during development(when debug=True)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

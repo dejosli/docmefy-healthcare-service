@@ -11,8 +11,8 @@ from .managers import CustomUserManager
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    is_patient = models.BooleanField(default=False)
-    is_doctor = models.BooleanField(default=False)
+    is_patient = models.BooleanField(default=False, verbose_name='Patient', help_text='Designates whether this user should be treated as patient.')
+    is_doctor = models.BooleanField(default=False, verbose_name='Doctor', help_text='Designates whether this user should be treated as doctor.')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -30,8 +30,11 @@ class PatientProfile(models.Model):
     # email = models.EmailField(max_length=150, unique=True)
     mobile = models.CharField(max_length=12)
 
+    USERNAME_FIELD = 'email'
+
     def __str__(self):
         return self.patient.email
+
 
 class DoctorProfile(models.Model):
     doctor = models.OneToOneField(

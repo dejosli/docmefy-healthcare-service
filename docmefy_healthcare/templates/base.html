@@ -28,13 +28,16 @@
   <!-- Import navbar template-->
   {% include 'navbar.html' %}
 
+  <div class="container">
+
+
   {% block body %}
     {% block content %}{% endblock content %}
   {% endblock body %}
 
   {% block extra_body %}
   {% endblock extra_body %}
-
+</div>
 
   <!--JavaScript at end of body for optimized loading-->
   <!--Import jQuery CDN from stack-path-->
