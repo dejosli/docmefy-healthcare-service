@@ -26,6 +26,13 @@ var paths = {
     }
 };
 
+var watchPaths = {
+    scssPath: 'static/scss/**/*.scss',
+    htmlPath: 'templates/**/*.html',
+    jsPath: 'static/js/**/*.js',
+    pyPath: './**/*.py'
+}
+
 /* Not all tasks need to use streams, a gulpfile is just another node program
  * and you can use all packages available on npm, but it must return either a
  * Promise, a Stream or take a callback and call it
@@ -72,9 +79,14 @@ function watch() {
         proxy: "127.0.0.1:8000"
     });
 
-    gulp.watch('static/scss/**/*.scss', style);
-    gulp.watch("templates/**/*.html").on('change', browserSync.reload);
-    gulp.watch('static/js/**/*.js', scripts).on('change', browserSync.reload);
+    // gulp.watch('static/scss/**/*.scss', style);
+    // gulp.watch("templates/**/*.html").on('change', browserSync.reload);
+    // gulp.watch('static/js/**/*.js', scripts).on('change', browserSync.reload);
+
+    gulp.watch(watchPaths.scssPath, style);
+    gulp.watch(watchPaths.htmlPath).on('change', browserSync.reload);
+    gulp.watch(watchPaths.jsPath, scripts).on('change', browserSync.reload);
+    gulp.watch(watchPaths.pyPath).on('change', browserSync.reload);
 }
 
 /*

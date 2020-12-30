@@ -38,15 +38,40 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django_gulp', # Automatically watches and compiles new JavaScript files with browserify and live reload
+    'django.contrib.sites',
+    'django_gulp',  # Automatically watches and compiles new Sass and JavaScript files with browserify and live reload
     'django.contrib.staticfiles',
 
     # Custom apps
     'docmefy',
-    'users', # Custom user account
+    'users',
 
     # Third-party apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/admin/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 3600
+ACCOUNT_USERNAME_BLACKLIST = ['admin', 'superuser', 'user']
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+# Customize 'all-auth' forms
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.CustomUserCreationForm',
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,6 +135,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Django-allauth authentication
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # 'allauth' specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -137,7 +170,7 @@ STATICFILES_DIRS = [
 ]
 
 # Single root directory from where the Django application will serve the static files in production
-STATIC_ROOT  = os.path.join(BASE_DIR, 'static-files')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-files')
 
 # Base url to serve media files
 MEDIA_URL = '/media/'

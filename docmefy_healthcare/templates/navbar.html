@@ -7,8 +7,8 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="#">For Patients</a></li>
                 <li><a href="#">For Doctors</a></li>
-                <li><a class="waves-effect waves-dark btn btn-outline">Sign in</a></li>
-                <li><a class="waves-effect waves-light btn">Sign up for free</a></li>
+                <li><a href="{% url 'account_login' %}" class="waves-effect waves-dark btn btn-outline">Sign in</a></li>
+                <li><a href="{% url 'account_signup' %}" class="waves-effect waves-light btn">Sign up for free</a></li>
             </ul>
         </nav>
     </div>
@@ -16,7 +16,7 @@
         <li><a class="sidenav-close" href="#!"><span>Close</span></a></li>
         <li><a href="#">For Patients</a></li>
         <li><a href="#">For Doctors</a></li>
-        <li><a>Sign in</a></li>
-        <li><a>Sign up for free</a></li>
+        <li><a href="{% url 'account_login' %}">Sign in</a></li>
+        <li><a href="{% url 'account_signup' %}">Sign up for free</a></li>
     </ul>
 </header>

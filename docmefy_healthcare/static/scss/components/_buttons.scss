@@ -80,10 +80,12 @@
 .btn-outline{
   background-color: white;
   color: #000;
-  border: 1px  $button-raised-background solid;
+  border: 1px  #000 solid;
   &:hover {
     background-color: white;
-    border: 2px;
+    border: 1px  $button-raised-background solid;
+    color: $button-raised-background;
+    font-weight: 700;
     @extend .z-depth-1-half;
   }
 }
