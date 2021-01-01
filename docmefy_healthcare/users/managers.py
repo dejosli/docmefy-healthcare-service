@@ -22,6 +22,17 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
+    def create_patient(self, email, password, **extra_fields):
+        """
+        Create and save a Patient with the given email and password.
+        """
+        extra_fields.setdefault('is_patient', True)
+        extra_fields.setdefault('is_active', True)
+
+        if extra_fields.get('is_patient') is not True:
+            raise ValueError(_('Patient must have is_patient=True.'))
+        return self.create_user(email, password, **extra_fields)
+
     def create_superuser(self, email, password, **extra_fields):
         """
         Create and save a SuperUser with the given email and password.

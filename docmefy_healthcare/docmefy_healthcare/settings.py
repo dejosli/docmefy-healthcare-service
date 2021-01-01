@@ -57,17 +57,19 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/admin/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 3600
-ACCOUNT_USERNAME_BLACKLIST = ['admin', 'superuser', 'user']
+ACCOUNT_USERNAME_BLACKLIST = ['admin', 'superuser', 'user', 'dbbs']
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
-# Customize 'all-auth' forms
+# Customize django-allauth forms
 ACCOUNT_FORMS = {
     'signup': 'users.forms.PatientCreationForm',
 }
