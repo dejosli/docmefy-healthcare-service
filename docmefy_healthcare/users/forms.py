@@ -26,7 +26,7 @@ class CustomUserChangeForm(UserChangeForm):
 
 class PatientCreationForm(forms.ModelForm):
 
-    email = forms.EmailField(max_length=255, label='Email', required=True)
+    email = forms.EmailField(max_length=254, label='Email', required=True)
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Confirm Password', widget=forms.PasswordInput)
