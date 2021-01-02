@@ -2,13 +2,18 @@
 <header>
     <div class=navbar-fixed>
         <nav class="nav-wrapper transparent">
-            <a href="#!" class="brand-logo">Docmefy</a>
+            <a href="{% url 'home' %}" class="brand-logo">Docmefy</a>
             <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#">For Patients</a></li>
                 <li><a href="#">For Doctors</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="#" class="waves-effect waves-dark">{{request.user.email}}</a></li>
+                <li><a href="{% url 'account_logout' %}" class="waves-effect waves-dark btn btn-outline">Sign out</a></li>
+                {% else %}
                 <li><a href="{% url 'account_login' %}" class="waves-effect waves-dark btn btn-outline">Sign in</a></li>
                 <li><a href="{% url 'account_signup' %}" class="waves-effect waves-light btn">Sign up for free</a></li>
+                {% endif %}
             </ul>
         </nav>
     </div>

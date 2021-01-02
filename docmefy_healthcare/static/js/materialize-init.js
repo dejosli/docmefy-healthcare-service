@@ -6,4 +6,6 @@ $(document).ready(function(){
     });
     // modal initialize
     $('.modal').modal();
+
+    M.updateTextFields();
 });

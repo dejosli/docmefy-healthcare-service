@@ -18,10 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from users.views import profile_redirect_view
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('docmefy.urls')),
     path('accounts/', include('allauth.urls')),
+    # path('profiles/', include('users.urls')),
+    path('profiles/', profile_redirect_view, name='profile-redirect'),
 ]
 
 admin.site.site_title = 'Docmefy Admin'
